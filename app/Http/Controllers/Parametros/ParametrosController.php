@@ -8,6 +8,29 @@ use Illuminate\Http\Request;
 
 class ParametrosController extends Controller
 {
+    public function index()
+    {
+        $columns = ['ID', 'Descrição'];
+
+        return view('crud.list', [
+            'title' => 'Parametros',
+            'columns' => $columns,
+            'routeIndex' => route('parametros.index'),
+            'routeCreate' => null,
+            'routeList' => route('parametros.list'),
+            'routeShow' => route('parametros.show', -9),
+            'routeEdit' => route('parametros.edit', -9),
+            'routeDestroy' => null,
+        ]);
+    }
+
+    public function list(Request $request)
+    {
+        $dataColumns = ['id', 'descricao'];
+        $data = Parametros::getAll($dataColumns, ['descricao' => $request['term']]);
+
+        return $data;
+    }
 
     public function show(string $id = "1")
     {

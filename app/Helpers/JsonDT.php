@@ -2,19 +2,17 @@
 
 namespace App\Helpers;
 
-use Cocur\Slugify\Slugify;
-
+use Illuminate\Support\Str;
 class JsonDT
 {
 
     public static function jsonGenerate(array $data, array $fields, array $columns)
     {
-        $slug = new Slugify();
         $slugColumns = [];
         $slugData = [];
         
         foreach ($fields as $column) {
-            $columnName = $slug->Slugify($column, ['separator' => '_']);
+            $columnName = str_replace('.', '_', $column);
             $slugColumns[] = $columnName;
         }
 
@@ -33,12 +31,11 @@ class JsonDT
 
     public static function jsonSelect2(array $data, array $fields, array $columns = ['id', 'text'])
     {
-        $slug = new Slugify();
         $slugColumns = [];
         $slugData = [];
 
         foreach ($fields as $column) {
-            $columnName = $slug->Slugify($column, ['separator' => '_']);
+            $columnName = str_replace('.', '_', $column);
             $slugColumns[] = $columnName;
         }
 

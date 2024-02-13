@@ -64,10 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::get('localidades/0/list', [LocalidadesController::class, 'list'])->name('localidades.list');
     Route::get('localidades/0/select2', [LocalidadesController::class, 'select2'])->name('localidades.select2');
 
-    // Route::resource('parametros', ParametrosController::class);
-    Route::get('parametros/{id?}', [ParametrosController::class, 'show'])->name('parametros.show');
-    Route::get('parametros/{id?}/edit', [ParametrosController::class, 'edit'])->name('parametros.edit');
-    Route::patch('parametros/{id?}/update', [ParametrosController::class, 'update'])->name('parametros.update');
+    Route::resource('parametros', ParametrosController::class)->only(['index', 'show', 'edit', 'update']);
+    Route::get('parametros/0/list', [ParametrosController::class, 'list'])->name('parametros.list');
 
     Route::resource('pesos', PesosController::class);
     Route::get('pesos/0/list', [PesosController::class, 'list'])->name('pesos.list');
@@ -84,10 +82,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('unidades', UnidadesController::class);
     Route::get('unidades/0/list', [UnidadesController::class, 'list'])->name('unidades.list');
     Route::get('unidades/0/select2', [UnidadesController::class, 'select2'])->name('unidades.select2');
-
-    Route::resource('parametros', ParametrosController::class);
-    Route::get('parametros/0/list', [ParametrosController::class, 'list'])->name('parametros.list');
-    Route::get('parametros/0/select2', [ParametrosController::class, 'select2'])->name('parametros.select2');
 
     Route::resource('users', UsersController::class);
     Route::get('users/0/list', [UsersController::class, 'list'])->name('users.list');

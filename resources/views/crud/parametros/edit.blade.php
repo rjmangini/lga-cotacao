@@ -11,9 +11,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @php
                         $routeIndex = route('parametros.edit', 1);
-                        
                         $disabled = $crud == 'show';
-                        $action = route('parametros.edit');
+                        $action = route('parametros.edit', $data->id);
                         $method = 'get';
                         if ($crud == 'edit') {
                             $action = route('parametros.update', $data->id);
